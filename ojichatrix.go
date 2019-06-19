@@ -11,9 +11,17 @@ import (
 	"golang.org/x/crypto/ssh/terminal"
 )
 
+type printColor int
+
+const (
+	lightGreen printColor = iota
+	darkGreen
+)
+
 type singleLine struct {
 	flag    bool
 	cursor  int
+	pcolor  printColor
 	message []rune
 }
 
@@ -37,7 +45,7 @@ func printDarkGreen(y, x int, ch string) {
 }
 
 func printWhite(y, x int, ch string) {
-	fmt.Printf("\033[%d;%dH\033[1;37m%s\033[0;0H", y, x, ch)
+	fmt.Printf("\033[%d;%dH\033[40;37m%s\033[0;0H", y, x, ch)
 }
 
 func main() {
@@ -53,10 +61,9 @@ func main() {
 	fmt.Println("\033[1;40m")
 	// clear
 	fmt.Println("\033[2J")
-	// fmt.Printf("%v %v\n", width, height)
 	a := map[int]*singleLine{}
 	for i := 0; i < width; i++ {
-		a[i] = &singleLine{false, 0, createMessage(height)}
+		a[i] = &singleLine{false, 0, darkGreen, createMessage(height)}
 	}
 	for {
 		(*a[rand.Intn(width)]).flag = true
@@ -68,15 +75,20 @@ func main() {
 			(*a[x]).cursor++
 			ny := (*a[x]).cursor
 			ch := string((*a[x]).message[(*a[x]).cursor])
-			if rand.Intn(2) == 0 {
+			if (*a[x]).pcolor == lightGreen {
 				printLightGreen(y, x, ch)
-			} else {
+			} else if (*a[x]).pcolor == darkGreen {
 				printDarkGreen(y, x, ch)
 			}
 			printWhite(ny, x, ch)
 			if (*a[x]).cursor >= height {
 				(*a[x]).cursor = 0
 				(*a[x]).message = createMessage(height)
+				if rand.Intn(10) <= 8 {
+					(*a[x]).pcolor = darkGreen
+				} else {
+					(*a[x]).pcolor = lightGreen
+				}
 			}
 		}
 		time.Sleep(50000000)
