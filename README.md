@@ -1,8 +1,18 @@
-![](https://raw.githubusercontent.com/wiki/greymd/ojichatrix/images/logo.png)
+<h1 align="center">
+  <img src="https://raw.githubusercontent.com/wiki/greymd/ojichatrix/images/logo.png" />
+</h1>
 
 > This is your last chance. After this, there is no turning back.
-> You take the blue pill - the story ends, you wake up in your bed and believe whatever you want to believe.
-> You take the red pill - you stay in Wonderland and I show you how deep the Ojisan's sinfulness is.
+> You close the terminal - the story ends, you wake up in your bed and believe whatever you want to believe.
+> You run the command - you stay in Wonderland and I show you how deep the Ojisan's sinfulness is.
+
+<h1 align="center">
+  <img src="https://raw.githubusercontent.com/wiki/greymd/ojichatrix/images/movie.gif" />
+</h1>
+
+# Description
+
+Makes Matrix effect with [ojichat](https://github.com/greymd/ojichat) messages.
 
 # Installation
 
@@ -24,9 +34,7 @@ Run the command.
 $ ojichatrix
 ```
 
-You'll see the awesome screen.
-
-![](https://raw.githubusercontent.com/wiki/greymd/ojichatrix/images/movie.gif)
+Awesome screen will be shown.
 
 # License
 MIT
